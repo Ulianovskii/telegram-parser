@@ -1,0 +1,6 @@
+summary: null
+display_name: monitor
+extra_perms:
+  u/admin2: true
+owners:
+  - u/admin2
