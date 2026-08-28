@@ -1,3 +1,5 @@
 version: v2
 locks:
   f/monitor/get_post: 67dec6c2e866306a059fc8e0e34646f419a4cf84a3093360b99d921aa8dfece4
+  f/monitor/list_posts: 3fd352c4cc4a2aac4276f1da3be788cebf43fbed1a4b40743fd4e892c5d97989
+  f/monitor/sync_channel: 9f8ca96ca635083cf9e82ae7ad9a0bc94fd62b6be2ad657922f8352f8ff26b0e

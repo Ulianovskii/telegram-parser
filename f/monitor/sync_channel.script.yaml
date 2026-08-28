@@ -1,0 +1,19 @@
+summary: ''
+description: ''
+lock: '!inline f/monitor/sync_channel.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    browser_worker_url:
+      type: string
+      description: ''
+      default: http://host.docker.internal:3001
+      originalType: string
+    channel:
+      type: string
+      description: ''
+      default: andrew_parser_test
+      originalType: string
+  required: []

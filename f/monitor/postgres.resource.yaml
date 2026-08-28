@@ -1,0 +1,12 @@
+description: ''
+value:
+  dbname: telegram_parser
+  host: host.docker.internal
+  password: telegram_parser_local
+  port: 5433
+  region: ''
+  root_certificate_pem: ''
+  sslmode: disable
+  use_iam_auth: false
+  user: telegram_parser
+resource_type: postgresql
