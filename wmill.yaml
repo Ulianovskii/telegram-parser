@@ -22,7 +22,7 @@ excludes: []
 skipVariables: false
 
 # Skip syncing resources
-skipResources: false
+skipResources: true
 
 # Skip syncing resource types
 skipResourceTypes: false

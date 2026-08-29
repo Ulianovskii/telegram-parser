@@ -1,0 +1,14 @@
+summary: Обработка новых постов через GPT
+description: Создаёт краткий пересказ и определяет тематику
+lock: '!inline f/monitor/process_new_posts.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    limit:
+      type: integer
+      description: Максимальное количество постов за один запуск
+      default: 20
+      originalType: integer
+  required: []

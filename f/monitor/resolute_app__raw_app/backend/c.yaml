@@ -1,0 +1,4 @@
+type: script
+name: Обработка новых постов через GPT
+fields: {}
+path: f/monitor/process_new_posts

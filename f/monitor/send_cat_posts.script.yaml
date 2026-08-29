@@ -1,0 +1,22 @@
+summary: ''
+description: ''
+lock: '!inline f/monitor/send_cat_posts.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    chat_id:
+      type: integer
+      description: ''
+      default: 103181087
+    limit:
+      type: integer
+      description: ''
+      default: 20
+    topic:
+      type: string
+      description: ''
+      default: котики
+      originalType: string
+  required: []

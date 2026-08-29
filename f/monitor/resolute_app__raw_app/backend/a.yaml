@@ -1,0 +1,6 @@
+type: script
+name: f/monitor/list_posts
+fields:
+  database:
+    value: $res:f/monitor/postgres
+path: f/monitor/list_posts

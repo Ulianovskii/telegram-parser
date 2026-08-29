@@ -1,5 +1,11 @@
 version: v2
 locks:
   f/monitor/get_post: 67dec6c2e866306a059fc8e0e34646f419a4cf84a3093360b99d921aa8dfece4
-  f/monitor/list_posts: 3fd352c4cc4a2aac4276f1da3be788cebf43fbed1a4b40743fd4e892c5d97989
+  f/monitor/get_settings: 28be9ccf15aae5afaab270576d933365d9db3389758ee12334e5b5562b6d3cae
+  f/monitor/list_posts: e7961ca61297664254645af9cea2f89fc190d167ceeea048615e89b0fb6d0f97
+  f/monitor/process_new_posts: 55c8d0690c02f6f1f2cb4ddecf80aba0fab24e0a82519019af9739dcee8ff79a
+  f/monitor/resolute_app__raw_app+__app_hash: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  f/monitor/send_cat_posts: d7e16330cd0a510a00c13eede8041bae6a5bb378fd0f1156d2375c74ef28e5f5
   f/monitor/sync_channel: 9f8ca96ca635083cf9e82ae7ad9a0bc94fd62b6be2ad657922f8352f8ff26b0e
+  f/monitor/update_prompt: cb7df21400d3989a91ad7d6cb2f3404c371081e990fd9128029bc8b27c56b38c
+  f/monitor/update_topics: 339b900dadfd3eb343f546a65a4ada602b3b206dbf7008e6baf2ce97501832f3

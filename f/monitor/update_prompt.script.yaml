@@ -1,0 +1,15 @@
+summary: ''
+description: ''
+lock: '!inline f/monitor/update_prompt.script.lock'
+kind: script
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  properties:
+    prompt:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - prompt
