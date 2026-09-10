@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "product-auth-telegram"
+version = "0.1.0"
+description = "Independent per-product Telegram OIDC authentication for FastAPI"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1", "authlib>=1.8,<2", "joserfc>=1.7,<2", "httpx[socks]>=0.28,<1",
+  "sqlalchemy>=2.0,<3", "alembic>=1.15,<2", "pydantic-settings>=2.8,<3",
+]
+
+[project.optional-dependencies]
+postgres = ["asyncpg>=0.30,<1"]
+sqlite = ["aiosqlite>=0.21,<1"]
+demo = ["uvicorn[standard]>=0.34,<1"]
+test = ["pytest>=8,<10", "pytest-asyncio>=0.26,<2", "respx>=0.22,<1", "aiosqlite>=0.21,<1"]
+
+[project.scripts]
+product-auth = "product_auth.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+product_auth = ["migrations/*.py", "migrations/versions/*.py"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

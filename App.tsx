@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
-import ProfilePage from "./pages/ProfilePage";
-import ControlsPage from "./pages/ControlsPage";
-import FavoritesPage from "./pages/FavoritesPage";
+import ProfilePage from "./f/monitor/resolute_app__raw_app/pages/ProfilePage";
+import ControlsPage from "./f/monitor/resolute_app__raw_app/pages/ControlsPage";
+import FavoritesPage from "./f/monitor/resolute_app__raw_app/pages/FavoritesPage";
 import { useMonitor } from "./hooks/useMonitor";
-import type { Page } from "./types";
+import type { Page } from "./f/monitor/resolute_app__raw_app/types";
 import "./index.css";
 
 export default function App() {

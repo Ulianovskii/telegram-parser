@@ -14,6 +14,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
   flyway:
     image: flyway/flyway:11-alpine
     depends_on:
@@ -26,6 +27,23 @@ services:
       - migrate
     volumes:
       - ./migrations:/flyway/sql:ro
-      
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      AUTH_ORIGIN: http://localhost:8002
+      AUTH_DEVELOPMENT: "true"
+      AUTH_COOKIE_NAME: product_session
+      AUTH_DATABASE_URL: postgresql+asyncpg://telegram_parser:${POSTGRES_PASSWORD}@db:5432/telegram_parser
+      AUTH_TELEGRAM_CLIENT_ID: ${AUTH_TELEGRAM_CLIENT_ID}
+      AUTH_TELEGRAM_CLIENT_SECRET: ${AUTH_TELEGRAM_CLIENT_SECRET}
+    ports:
+      - "8002:8000"
+
 volumes:
   postgres_data:
