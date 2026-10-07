@@ -1,15 +1,16 @@
-# Используем готовый минимальный образ Python.
+# Dockerfile — сборка отдельного FastAPI-backend.
+
 FROM python:3.12-slim
 
-# Рабочая папка внутри контейнера.
 WORKDIR /app
 
-# Копируем и устанавливаем наш модуль авторизации.
-COPY product-auth ./product-auth
-RUN pip install --no-cache-dir ./product-auth uvicorn asyncpg
+# Сначала устанавливаем зависимости отдельным слоем.
+# Docker сможет использовать кеш, пока requirements.txt не изменился.
+COPY backend/requirements.txt ./backend/requirements.txt
+RUN pip install --no-cache-dir -r ./backend/requirements.txt
 
-# Копируем основной FastAPI-бэкенд.
+# Копируем код backend.
 COPY backend ./backend
 
-# Запускаем сервер внутри контейнера на порту 8000.
+# Запускаем HTTP-сервер внутри контейнера.
 CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000"]

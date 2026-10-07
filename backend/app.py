@@ -1,34 +1,16 @@
 # app.py — основной FastAPI-сервер продукта.
-# Подключает PostgreSQL и готовый модуль авторизации.
 
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from fastapi.middleware.cors import CORSMiddleware
 
-from product_auth import AuthModule, AuthSettings
-
-
-# Загружает настройки авторизации из переменных окружения.
-settings = AuthSettings()
-
-# Создаёт средство подключения к PostgreSQL.
-engine = create_async_engine(
-    settings.database_url.get_secret_value(),
-    pool_pre_ping=True,
-)
-
-# Создаёт фабрику временных SQLAlchemy-сессий для запросов к базе.
-session_factory = async_sessionmaker(
-    engine,
-    expire_on_commit=False,
-)
-
-# Создаёт готовый модуль авторизации.
-auth = AuthModule(settings, session_factory)
+from backend.auth.router import router as auth_router
+from backend.database import engine
 
 
-# При остановке сервера закрывает подключения к PostgreSQL.
+# При остановке сервера корректно закрывает подключения к PostgreSQL.
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     yield
@@ -38,11 +20,28 @@ async def lifespan(app: FastAPI):
 # Создаёт основной FastAPI-сервер.
 app = FastAPI(lifespan=lifespan)
 
-# Подключает маршруты /auth/telegram/start, /callback, /me и /logout.
-app.include_router(auth.router)
+
+# Разрешает отдельному React-приложению обращаться к backend.
+# allow_credentials нужен для передачи HttpOnly cookie.
+frontend_origins = os.getenv(
+    "FRONTEND_ORIGINS",
+    "http://localhost:5173,http://localhost:5174",
+).split(",")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=frontend_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
-# Простой адрес для проверки, что сервер запущен.
+# Подключает маршруты, начинающиеся с /api/auth.
+app.include_router(auth_router)
+
+
+# Проверяет, что backend запущен.
 @app.get("/health")
 async def health():
     return {"status": "ok"}
